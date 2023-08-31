@@ -15,7 +15,7 @@ unzip /tmp/user.zip
 echo -e "\e[32m>>>>>>>>Install app dependencies<<<<<<<<\e[0m"
 npm install
 
-echo -e "\e[32m>>>>>>>>Create User service file<<<<<<<<\e[0m"
+echo -e "\e[32m>>>>>>>>Create user service file<<<<<<<<\e[0m"
 cp /home/centos/Roboshop-shell/User.service /etc/systemd/system/User.service
 
 echo -e "\e[32m>>>>>>>>Load service<<<<<<<<\e[0m"
