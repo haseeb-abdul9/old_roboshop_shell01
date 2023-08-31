@@ -1,3 +1,4 @@
+echo -e "\e[32m>>>>>>>>TEST<<<<<<<<\e[0m"
 echo -e "\e[32m>>>>>>>>Install nodejs<<<<<<<<\e[0m"
 dnf module install nodejs:18/common
 
