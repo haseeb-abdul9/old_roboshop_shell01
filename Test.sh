@@ -4,7 +4,7 @@ dnf module install nodejs:18/common
 echo -e "\e[32m>>>>>>>>Add application user & App directory<<<<<<<<\e[0m"
 useradd roboshop
 rm -rf /app
-mkdir app
+mkdir /app
 
 echo -e "\e[32m>>>>>>>>Download & Unzip app content<<<<<<<<\e[0m"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
