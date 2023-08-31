@@ -30,4 +30,4 @@ cp /home/centos/Roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 yum install mongodb-org-shell -y
 
 echo -e "\e[32m>>>>>>>>Load Schema<<<<<<<<\e[0m"
-mongo --host mongodb-dev.haseebdevops.online </app/schema/catalogue.js
+mongo --host mysql-dev.haseebdevops.online </app/schema/catalogue.js
