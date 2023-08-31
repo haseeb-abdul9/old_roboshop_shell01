@@ -8,7 +8,7 @@ rm -rf /app
 mkdir /app
 
 echo -e "\e[32m>>>>>>>>Download & Unzip app content<<<<<<<<\e[0m"
-curl -o /tmp/User.zip https://roboshop-artifacts.s3.amazonaws.com/User.zip
+curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip
 cd /app
 unzip /tmp/user.zip
 
@@ -16,14 +16,14 @@ echo -e "\e[32m>>>>>>>>Install app dependencies<<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[32m>>>>>>>>Create User service file<<<<<<<<\e[0m"
-cp /home/centos/Roboshop-shell/User.service /etc/systemd/system/User.service
+cp /home/centos/Roboshop-shell/user.service /etc/systemd/system/user.service
 
 echo -e "\e[32m>>>>>>>>Load service<<<<<<<<\e[0m"
 systemctl daemon-reload
 
 echo -e "\e[32m>>>>>>>>Start User<<<<<<<<\e[0m"
-systemctl enable User
-systemctl start User
+systemctl enable user
+systemctl start user
 
 echo -e "\e[32m>>>>>>>>Setup Mongo repo<<<<<<<<\e[0m"
 cp /home/centos/Roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
