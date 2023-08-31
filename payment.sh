@@ -3,6 +3,7 @@ yum install python36 gcc python3-devel -y
 
 echo -e "\e[32m>>>>>>>>Add application user & App directory<<<<<<<<\e[0m"
 useradd roboshop
+rm -rf app
 mkdir app
 
 echo -e "\e[32m>>>>>>>>Download & Unzip app content<<<<<<<<\e[0m"

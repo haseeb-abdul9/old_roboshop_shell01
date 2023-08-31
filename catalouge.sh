@@ -12,7 +12,7 @@ curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue
 cd /app
 unzip /tmp/catalogue.zip
 
-echo -e "\e[32m>>>>>>>>Install app dependencies<<<<<<<<\e[0m"
+echo -e "\e[32m>>>>>>>>Install app dependencies<<<<<<<<\e[0m"e
 npm install
 
 echo -e "\e[32m>>>>>>>>Create catalogue service file<<<<<<<<\e[0m"
