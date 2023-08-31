@@ -16,7 +16,7 @@ echo -e "\e[32m>>>>>>>>Install app dependencies<<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[32m>>>>>>>>Create User service file<<<<<<<<\e[0m"
-cp User.service /etc/systemd/system/User.service
+cp /home/centos/Roboshop-shell/User.service /etc/systemd/system/User.service
 
 echo -e "\e[32m>>>>>>>>Load service<<<<<<<<\e[0m"
 systemctl daemon-reload
@@ -25,8 +25,9 @@ echo -e "\e[32m>>>>>>>>Start User<<<<<<<<\e[0m"
 systemctl enable User
 systemctl start User
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+echo -e "\e[32m>>>>>>>>Setup Mongo repo<<<<<<<<\e[0m"
+cp /home/centos/Roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 yum install mongodb-org-shell -y
 
 echo -e "\e[32m>>>>>>>>Load Schema<<<<<<<<\e[0m"
-mongo --host mongodb-dev.haseebdevops.online </app/schema/catalogue.js
+mongo --host mongodb-dev.haseebdevops.online </app/schema/user.js
