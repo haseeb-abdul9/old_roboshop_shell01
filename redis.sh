@@ -2,7 +2,7 @@ echo -e "\e[32m>>>>>>>>Install redis repo<<<<<<<<\e[0m"
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 
 echo -e "\e[32m>>>>>>>>Install redis<<<<<<<\e[0m"
-yum module enable redis:remi-6.2 -y
+dnf module enable redis:remi-6.2 -y
 yum install redis -y
 
 echo -e "\e[32m>>>>>>>>Change port<<<<<<<<\e[0m"
