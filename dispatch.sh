@@ -3,8 +3,8 @@ yum install golang -y
 
 echo -e "\e[32m>>>>>>>>Add application user & App directory<<<<<<<<\e[0m"
 useradd roboshop
-rm -rf app
-mkdir app
+rm -rf /app
+mkdir /app
 
 echo -e "\e[32m>>>>>>>>Download & Unzip app content<<<<<<<<\e[0m"
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
@@ -17,7 +17,7 @@ go get
 go build
 
 echo -e "\e[32m>>>>>>>>Create dispatch service file<<<<<<<<\e[0m"
-cp /home/centos/Roboshop-shell/etc/systemd/system/dispatch.service
+cp /home/centos/Roboshop-shell/dispatch.service etc/systemd/system/dispatch.service
 
 echo -e "\e[32m>>>>>>>>Load service<<<<<<<<\e[0m"
 systemctl daemon-reload
