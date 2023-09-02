@@ -3,7 +3,7 @@ yum install maven -y
 
 echo -e "\e[32m>>>>>>>>Add application user & Directory<<<<<<<<\e[0m"
 useradd roboshop
-rm -rf app
+rm -rf /app
 mkdir /app
 
 echo -e "\e[32m>>>>>>>>Download & unzip app content<<<<<<<<\e[0m"
