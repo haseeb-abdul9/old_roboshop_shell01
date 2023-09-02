@@ -4,7 +4,7 @@ yum install python36 gcc python3-devel -y
 echo -e "\e[32m>>>>>>>>Add application user & App directory<<<<<<<<\e[0m"
 useradd roboshop
 rm -rf app
-mkdir app
+mkdir /app
 
 echo -e "\e[32m>>>>>>>>Download & Unzip app content<<<<<<<<\e[0m"
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
@@ -22,4 +22,4 @@ systemctl daemon-reload
 
 echo -e "\e[32m>>>>>>>>Start Payment<<<<<<<<\e[0m"
 systemctl enable payment
-systemctl start payment
+systemctl restart payment
