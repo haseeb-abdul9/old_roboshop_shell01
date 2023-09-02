@@ -25,7 +25,7 @@ echo -e "\e[32m>>>>>>>>Install MySQL<<<<<<<<\e[0m"
 yum install mysql -y
 
 echo -e "\e[32m>>>>>>>>Change MySQl default password<<<<<<<<\e[0m"
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h mysql-dev.haseebdevops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
 echo -e "\e[32m>>>>>>>>start shipping<<<<<<<<\e[0m"
 systemctl enable shipping
