@@ -23,6 +23,6 @@ systemctl daemon-reload
 
 echo -e "\e[32m>>>>>>>>Start cart<<<<<<<<\e[0m"
 systemctl enable cart
-systemctl start cart
 systemctl restart cart
+
 
