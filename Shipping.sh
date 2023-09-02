@@ -4,7 +4,7 @@ yum install maven -y
 echo -e "\e[32m>>>>>>>>Add application user & Directory<<<<<<<<\e[0m"
 useradd roboshop
 rm -rf app
-mkdir app
+mkdir /app
 
 echo -e "\e[32m>>>>>>>>Download & unzip app content<<<<<<<<\e[0m"
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
@@ -29,4 +29,4 @@ mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
 echo -e "\e[32m>>>>>>>>start shipping<<<<<<<<\e[0m"
 systemctl enable shipping
-systemctl start shipping
+systemctl restart shipping
