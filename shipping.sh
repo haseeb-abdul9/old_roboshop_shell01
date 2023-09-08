@@ -16,27 +16,28 @@ useradd roboshop
 rm -rf /app
 mkdir /app
 
-print_head "Download & unzip app contentprint_head"
+print_head "Download & unzip app content"
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
 cd /app
 unzip /tmp/shipping.zip
 
-print_head "Download Dependenciesprint_head"
+print_head "Download Dependencies"
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 
-print_head "create service fileprint_head"
+print_head "create service file"
 cp  /home/centos/Roboshop-shell/shipping.service /etc/systemd/system/shipping.service
 
-print_head "Load serviceprint_head"
+print_head "Load service"
 systemctl daemon-reload
 
-print_head "Install MySQLprint_head"
+print_head "Install MySQL"
 yum install mysql -y
 
-print_head "Change MySQl default passwordprint_head"
+print_head "Change MySQl default password"
 mysql -h mysql-dev.haseebdevops.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 
-print_head "start shippingprint_head"
+print_head "start shipping"
 systemctl enable shipping
+systemctl start shipping
 systemctl restart shipping

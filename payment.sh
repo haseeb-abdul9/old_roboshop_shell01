@@ -34,4 +34,5 @@ systemctl daemon-reload
 
 print_head "Start ${component}"
 systemctl enable ${component}
+systemctl start ${component}
 systemctl restart ${component}
