@@ -3,7 +3,7 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 rabbitmq_password=$1
 
-if [ -z "$rabbitmq_password"]; then
+if [ -z "$rabbitmq_password" ]; then
   echo Input rabbitmq_password missing
   exit
 fi
