@@ -1,25 +1,37 @@
-echo -e "\e[32m>>>>>>>>Install Python<<<<<<<<\e[0m"
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
+rabbitmq_password=$1
+component=${component}
+
+if [ -z "$rabbitmq_password"]; then
+  echo Input rabbitmq_password missing
+  exit
+fi
+
+print_head "Install Python"
 yum install python36 gcc python3-devel -y
 
-echo -e "\e[32m>>>>>>>>Add application user & App directory<<<<<<<<\e[0m"
-useradd roboshop
+print_head "Add application user & App directory"
+useradd ${app_user}
 rm -rf /app
 mkdir /app
 
-echo -e "\e[32m>>>>>>>>Download & Unzip app content<<<<<<<<\e[0m"
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
+print_head "Download & Unzip app content"
+curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
 cd /app
-unzip /tmp/payment.zip
+unzip /tmp/${component}.zip
 
-echo -e "\e[32m>>>>>>>>Install app dependencies<<<<<<<<\e[0m"
+print_head "Install app dependencies"
 pip3.6 install -r requirements.txt
 
-echo -e "\e[32m>>>>>>>>Create payment service file<<<<<<<<\e[0m"
-cp /home/centos/Roboshop-shell/payment.service /etc/systemd/system/payment.service
+print_head "Create ${component} service file"
+sed -i -e "s|rabbitmq_password|${rabbitmq_password}|" ${script_path}/${component}.service
+cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
 
-echo -e "\e[32m>>>>>>>>Load service<<<<<<<<\e[0m"
+print_head "Load service"
 systemctl daemon-reload
 
-echo -e "\e[32m>>>>>>>>Start Payment<<<<<<<<\e[0m"
-systemctl enable payment
-systemctl restart payment
+print_head "Start ${component}"
+systemctl enable ${component}
+systemctl restart ${component}

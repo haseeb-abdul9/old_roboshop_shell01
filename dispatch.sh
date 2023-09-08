@@ -1,27 +1,33 @@
-echo -e "\e[32m>>>>>>>>Install Golang<<<<<<<<\e[0m"
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
+
+component=dispatch
+
+print_head "Install Golang" 
 yum install golang -y
 
-echo -e "\e[32m>>>>>>>>Add application user & App directory<<<<<<<<\e[0m"
-useradd roboshop
+print_head "Add application user & App directory"
+useradd $app_user
 rm -rf /app
 mkdir /app
 
-echo -e "\e[32m>>>>>>>>Download & Unzip app content<<<<<<<<\e[0m"
-curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
+print_head "Download & Unzip app content" 
+curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
 cd /app
-unzip /tmp/dispatch.zip
+unzip /tmp/${component}.zip
 
-echo -e "\e[32m>>>>>>>>Install app dependencies<<<<<<<<\e[0m"e
-go mod init dispatch
+print_head "Install app dependencies"
+go mod init ${component}
 go get
 go build
 
-echo -e "\e[32m>>>>>>>>Create dispatch service file<<<<<<<<\e[0m"
-cp /home/centos/Roboshop-shell/dispatch.service etc/systemd/system/dispatch.service
+print_head "Create ${component} service file" 
+cp ${scriot_path}/${component}.service etc/systemd/system/${component}.service
 
-echo -e "\e[32m>>>>>>>>Load service<<<<<<<<\e[0m"
+print_head "Load service" 
 systemctl daemon-reload
 
-echo -e "\e[32m>>>>>>>>Start dispatch<<<<<<<<\e[0m"
-systemctl enable dispatch
-systemctl start dispatch
+print_head "Start ${component}"
+systemctl enable ${component}
+systemctl start ${component}

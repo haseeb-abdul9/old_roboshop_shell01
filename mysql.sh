@@ -1,13 +1,23 @@
-echo -e "\e[32m>>>>>>>>Disable Default MySQL<<<<<<<<\e[0m"
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
+mysql_root_password=$1
+
+if [ -z "$mysql_root_password"]; then
+  echo Input rabbitmq_password missing
+  exit
+fi
+
+print_head "Disable Default MySQL"
 yum module disable mysql -y
 
-echo -e "\e[32m>>>>>>>>Install MySQL 5.7<<<<<<<<\e[0m"
+print_head "Install MySQL 5.7"
 cp mysql.repo /etc/yum.repos.d/mysql.repo
 yum install mysql-community-server -y
 
-echo -e "\e[32m>>>>>>>>Start MySQL<<<<<<<<\e[0m"
+print_head "Start MySQL"
 systemctl enable mysqld
 systemctl start mysqld
 
-echo -e "\e[32m>>>>>>>>Change Default password<<<<<<<<\e[0m"
-mysql_secure_installation --set-root-pass RoboShop@1
+print_head "Change Default password"
+mysql_secure_installation --set-root-pass ${mysql_root_password}

@@ -1,11 +1,16 @@
-echo -e "\e[32m>>>>>>>>Install Mongo Repo<<<<<<<<\e[0m"
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
+component=mongod
+
+print_head "Install ${component} Repo"
 cp mongo.repo /etc/yum.repos.d/mongo.repo
-yum install mongodb-org -y
+yum install ${component}b-org -y
 
-echo -e "\e[32m>>>>>>>>Change port<<<<<<<<\e[0m"
-sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/mongod.conf
+print_head "Change port"
+sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/${component}.conf
 
-echo -e "\e[32m>>>>>>>>Start mongodb<<<<<<<<\e[0m"
-systemctl enable mongod
-systemctl start mongod
+print_head "Start ${component}"
+systemctl enable ${component}
+systemctl start ${component}
 

@@ -1,19 +1,25 @@
-echo -e "\e[32m>>>>>>>>Install nginx<<<<<<<<\e[0m"
-yum install nginx -y
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
+component=nginx
+component2=frontend
 
-echo -e "\e[32m>>>>>>>>Configure Reverse Proxy<<<<<<<<\e[0m"
-cp roboshop.conf /etc/nginx/default.d/roboshop.conf
+print_head "Install ${component}"
+yum install ${component} -y
 
-echo -e "\e[32m>>>>>>>>Remove nginx Content<<<<<<<<\e[0m"
-rm -rf /usr/share/nginx/html/*
+print_head "Configure Reverse Proxy"
+cp roboshop.conf /etc/${component}/default.d/roboshop.conf
 
-echo -e "\e[32m>>>>>>>>Download frontend content<<<<<<<<\e[0m"
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+print_head "Remove ${component} Content"
+rm -rf /usr/share/${component}/html/*
 
-echo -e "\e[32m>>>>>>>>Unzip frontend content<<<<<<<<\e[0m"
-cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
+print_head "Download ${component2} content"
+curl -o /tmp/${component2}.zip https://roboshop-artifacts.s3.amazonaws.com/${component2}.zip
 
-echo -e "\e[32m>>>>>>>>Start nginx<<<<<<<<\e[0m"
-systemctl enable nginx
-systemctl start nginx
+print_head "Unzip ${component2} content"
+cd /usr/share/${component}/html
+unzip /tmp/${component2}.zip
+
+print_head "Start ${component}"
+systemctl enable ${component}
+systemctl start ${component}

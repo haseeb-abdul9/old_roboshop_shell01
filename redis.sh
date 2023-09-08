@@ -1,14 +1,19 @@
-echo -e "\e[32m>>>>>>>>Install redis repo<<<<<<<<\e[0m"
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
+component=redis
+
+print_head "Install ${component} repo"
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 
-echo -e "\e[32m>>>>>>>>Install redis<<<<<<<\e[0m"
-dnf module enable redis:remi-6.2 -y
-yum install redis -y
+print_head "Install ${component}"
+dnf module enable ${component}:remi-6.2 -y
+yum install ${component} -y
 
-echo -e "\e[32m>>>>>>>>Change port<<<<<<<<\e[0m"
-sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf /etc/redis/redis.conf
+print_head "Change port"
+sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/${component}.conf /etc/${component}/${component}.conf
 
-echo -e "\e[32m>>>>>>>>Start Redis<<<<<<<<\e[0m"
-systemctl enable redis
-systemctl start redis
-systemctl restart redis
+print_head "Start ${component}"
+systemctl enable ${component}
+systemctl start ${component}
+systemctl restart ${component}
