@@ -41,6 +41,7 @@ function_nodejs() {
 
     print_head "Start ${component}" 
     systemctl enable ${component}
+    systemctl start ${component}
     systemctl restart ${component}
 
     schema_setup
