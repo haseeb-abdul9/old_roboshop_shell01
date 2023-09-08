@@ -18,8 +18,8 @@ rm -rf /app
 mkdir /app
 
 print_head "Download & Unzip app content"
-curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
-cd /app
+curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip 
+cd /app 
 unzip /tmp/${component}.zip
 
 print_head "Install app dependencies"
