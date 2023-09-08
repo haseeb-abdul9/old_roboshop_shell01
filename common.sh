@@ -34,7 +34,7 @@ function_nodejs() {
     npm install
 
     print_head "Create cart service file" 
-    cp $script_path/${component}.service /etc/systemd/system/${component}.service
+    cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
 
     print_head "Load service" 
     systemctl daemon-reload
