@@ -11,7 +11,7 @@ schema_setup() {
     yum install mongodb-org-shell -y
 
     print_head "Load Schema"
-    mongo --host mongodb-dev.haseebdevops.online </app/schema/catalogue.js
+    mongo --host mongodb-dev.haseebdevops.online </app/schema/$component.js
   fi
 }
 
