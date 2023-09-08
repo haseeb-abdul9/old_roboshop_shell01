@@ -5,13 +5,13 @@ print_head() {
 }
 
 schema_setup() {
-  if [ "schema_setup" == mongo]; then
-        print_head "Setup Mongo repo"
-        cp /home/centos/Roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
-        yum install mongodb-org-shell -y
+  if [ "$schema_setup" == mongo]; then
+    print_head "Setup Mongo repo"
+    cp /home/centos/Roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+    yum install mongodb-org-shell -y
 
-        print_head "Load Schema"
-        mongo --host mongodb-dev.haseebdevops.online </app/schema/catalogue.js
+    print_head "Load Schema"
+    mongo --host mongodb-dev.haseebdevops.online </app/schema/catalogue.js
   fi
 }
 
