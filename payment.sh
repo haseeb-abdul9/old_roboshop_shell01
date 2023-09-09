@@ -26,8 +26,8 @@ print_head "Install app dependencies"
 pip3.6 install -r requirements.txt
 
 print_head "Create ${component} service file"
-cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
-sed -i -e "s|rabbitmq_password|${rabbitmq_password}|" ${script_path}/${component}.service
+cp ${script_path}/payment.service /etc/systemd/system/payment.service
+sed -i -e "s|rabbitmq_password|${rabbitmq_password}|" ${script_path}/payment.service
 
 print_head "Load service"
 systemctl daemon-reload
