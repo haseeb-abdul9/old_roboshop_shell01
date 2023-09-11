@@ -12,7 +12,7 @@ print_head "Disable Default MySQL"
 yum module disable mysql -y
 
 print_head "Install MySQL 5.7"
-cp mysql.repo /etc/yum.repos.d/mysql.repo
+cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 yum install mysql-community-server -y
 
 print_head "Start MySQL"
